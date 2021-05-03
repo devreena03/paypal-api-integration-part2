@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout demo</title>
+</head>
+
+<body>
+    My Example:
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <!-- Identify your business so that you can collect the payments. -->
+        <input type="hidden" name="business" value="Yourbusinessemail@paypal.com">
+        <!-- Add your PayPal Seller/Business email address Required-->
+        <!-- Specify a Buy Now button. -->
+        <input type="hidden" name="cmd" value="_xclick">
+        <!-- Specify details about the item that buyers will purchase. -->
+        <input type="hidden" name="item_name" value="">
+        <!-- Add Description e.g your room type Required-->
+        <input type="hidden" name="amount" value="">
+        <!-- Dynamically add Total Amount Required-->
+        <input type="hidden" name="currency_code" value="">
+        <!-- Update to your currency -->
+        <input id="invoice" type="hidden" value="" name="invoice">
+        <!-- Add Unique invoice for each transaction -->
+        <input type="hidden" name="notify_url" value="www.yourwebsite.com/ipn.php">
+        <!-- Please add IPN URL You can use this service to automate back-office and administrative functions, including fulfilling orders, tracking customers, and providing status and other information related to transactions. -->
+        <input type='hidden' name='cancel_return' value='' />
+        <!-- Take customers to this URL when they cancel their checkout -->
+        <input type='hidden' name='return' value='' />
+        <!-- Take customers to this URL when they finish their checkout  -->
+        <!-- Display the payment button. -->
+        <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online">
+    </form>
+
+    Other Example:
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <div id="paying_for " class="paying_for reciept ng-scope ">
+
+            <h5>Personal Information</h5>
+
+            <div class="form-group">
+                <label class="col-md-4 col-xs-12 ">Your Name:
+                    <span>*</span>
+                </label>
+                <input type="text " name="on0 " required=" " class="col-md-8 col-xs-12 frm ">
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 col-xs-12 ">Currency:
+                    <span>*</span>
+                </label>
+                <select name="currency_code" class="col-md-8 col-xs-12 frm ">
+                    <option value="INR" selected="">INR</option>
+                    <option value="USD">USD</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 col-xs-12 ">Pay Amount:
+                    <span>*</span>
+                </label>
+                <input type="text" name="amount" required="" id="amount" class="col-md-8 col-xs-12 frm ">
+            </div>
+           
+
+            <input type="hidden" name="business" value="india-business@test.com">
+
+            <input type="hidden" name="cmd" value="_xclick ">
+            <input type="hidden" name="rm" value="2 ">
+
+
+            <input type="hidden" name="item_name" value="CAPM Certification and Training ">
+            <input type="hidden" name="item_number" value="2 ">
+
+            <!-- <input type="hidden " name="currency_code " value="USD "> -->
+
+
+            <input type="hidden" name="cancel_return" value="">
+            <input type="hidden" name="return" value="">
+
+            <div class="col-md-12 col-xs-12 ">
+                <input type="image" id="submit_paypal" name="submit" border="0 " src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" 
+                        alt="PayPal - The safer, easier way to pay online">
+                <img alt=" " border="0 " width="1 " height="1 " src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif ">
+            </div>
+
+        </div>
+    </form>
+</body>
+
+</html>

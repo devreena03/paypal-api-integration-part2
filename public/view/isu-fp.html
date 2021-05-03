@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+   <head>
+      <title>Partner - Launch Pad</title>
+   </head>
+   <body>
+      <div id="page" class="marketing-ce2">
+         <section id="content">
+            <h1>Merchant Site Hosting Partner Provided Downloadable Cart</h1>
+            <br />
+            <script>
+               function onboardedCallback(authCode, sharedId) {
+                  console.log("TOKEN RECEIVED!!");
+                   $("#thisDiv").remove();
+                   $("#thisDiv2").remove();
+                   $("#outterDiv").append("<div id='thisDiv'>Authorization code: " + authCode + "</div><br><div id='thisDiv2'> Shared Id: "+ sharedId + "</div><br>");
+               
+                   // send auth code to identity to get access token
+                   // make a call to GET client id and secret
+               }
+            </script>
+            <!-- <a target="_blank" data-paypal-onboard-complete="onboardedCallback" href="https://www.sandbox.paypal.com/bizsignup/partner/entry?partnerId=PEZFKJQZVYEE6&partnerClientId=AS35dAZbp8yCgjz7UQ0FAzQ_x1ennj5nT8C5-arVcqaLuxCJhBYvbuz4afGt1Ql-wOqso6wPN01aAS_B&features=PAYMENT,REFUND,PARTNER_FEE&partnerLogoUrl=https://www.opencart.com/opencart/application/view/image/logo.png&returnToPartnerUrl=https://www.ebay.com&integrationType=FO&channel=marketplace&displayMode=minibrowser&sellerNonce=ARhK2xC8xSvNRphchskRddPDH2rWnc-F2yPl03oP_Hbi13fUDvNnTB5tiy0ct" data-paypal-button="PPLtBlue">
+            BSNW FO (Sandbox / URL Integration)</a>
+
+            <br><br><br> -->
+
+            <a target="_blank" data-paypal-onboard-complete="onboardedCallback" 
+            href="https://www.sandbox.paypal.com/us/merchantsignup/partner/onboardingentry?token=N2QwNWE3MzctNTA1Yy00ZWFiLTkxN2QtNDczMmNiZjY5Y2IwMnZsaXBVMzlIS3dhZ3ZGQUN6Z1B1SHZ1ZE5CaUhtT2dmVmxteG1GN2hPMD12Mg==&displayMode=minibrowser" data-paypal-button="PPLtBlue">
+                BSNW FO (Sandbox / Prefill / PPCP)</a>
+                
+            <br><br><br>
+
+            <!-- <a target="_blank" data-paypal-onboard-complete="onboardedCallback"href="https://www.sandbox.paypal.com/US/merchantsignup/partner/onboardingentry?channelId=partner&partnerId=PEZFKJQZVYEE6&productIntentId=addipmt&integrationType=FO&features=PAYMENT,REFUND&partnerClientId=AS35dAZbp8yCgjz7UQ0FAzQ_x1ennj5nT8C5-arVcqaLuxCJhBYvbuz4afGt1Ql-wOqso6wPN01aAS_B&returnToPartnerUrl=http://localhost/isu/&displayMode=minibrowser&sellerNonce=ARhK2xC8xSvNRphchskRddPDH2rWnc-F2yPl03oP_Hbi13fUDvNnTB5tiy0ct" data-paypal-button="PPLtBlue">
+                MSN FO (Sandbox / URL Integratiion)</a>
+            
+            <br><br><br>
+
+            <a target="_blank" data-paypal-onboard-complete="onboardedCallback"href="https://www.sandbox.paypal.com/US/merchantsignup/partner/onboardingentry?channelId=partner&partnerId=PEZFKJQZVYEE6&productIntentId=addipmt&integrationType=TO&features=PAYMENT,REFUND&partnerClientId=AS35dAZbp8yCgjz7UQ0FAzQ_x1ennj5nT8C5-arVcqaLuxCJhBYvbuz4afGt1Ql-wOqso6wPN01aAS_B&returnToPartnerUrl=http://localhost/isu/&displayMode=minibrowser" data-paypal-button="PPLtBlue">
+                MSN TO (Sandbox / URL Integratiion)</a>
+            
+            <br><br><br>
+            
+
+            <a target="_blank" data-paypal-onboard-complete="onboardedCallback"href="https://www.sandbox.paypal.com/us/merchantsignup/partner/onboardingentry?token=YTU2YjRhNzAtOTdhOC00YzQ3LTkwMzMtMjNhOTU5MjVkODZkVkk4SVZMN1ZPdHc1eVM1cThHdHJBK1o4RDhCS0dLYXVQb0RMczJ0K3lJND12MQ==&displayMode=minibrowser" data-paypal-button="PPLtBlue">
+                MSN FO (Sandbox / Prefill)</a>
+            
+            <br><br><br>
+         
+            <a target="_blank" data-paypal-onboard-complete="onboardedCallback" href="https://www.sandbox.paypal.com/partnerexp/appEntry?referralToken=NjkyMDdmMjEtZDNkZS00OTM5LThiOTEtNjRlYjBmODFhZmE4cFdGUlkvbnJ2SmU2QXcyMmVDOVBqOVI2V0hQZ3hZb3AxRExubVRSR3BwMD12MQ==&context_token=5927046724288488448&displayMode=minibrowser" data-paypal-button="PPLtBlue">
+            PEXP FO (Sandbox / Prefill) </a>
+            
+            <br><br><br>
+            
+            <a target="_blank" data-paypal-onboard-complete="onboardedCallback" href="https://www.sandbox.paypal.com/partnerexp/appEntry?referralToken=YzYxNTE5YjQtODZmMC00YTM4LWJhMjMtNmNkOTFiY2FhMmI3VEpGVXNMb3lsMEZBTFIzSmVUZmdQa3BrWlJFemZmamRKMCtYTTd4bVJiOD12MQ==&context_token=3604946136541283328&displayMode=minibrowser" data-paypal-button="PPLtBlue">
+                PEXP FO (Sandbox / Prefill / Casual Seller) </a>
+            
+            <br><br><br>-->
+
+            <div id="outterDiv">
+               <div id="nonceDiv">Seller passes this nonce in url integration: ARhK2xC8xSvNRphchskRddPDH2rWnc-F2yPl03oP_Hbi13fUDvNnTB5tiy0ct</div>
+            </div> 
+            
+            <script id="paypal-js" src="https://www.sandbox.paypal.com/webapps/merchantboarding/js/lib/lightbox/partner.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         </section>
+      </div>
+   </body>
+</html>

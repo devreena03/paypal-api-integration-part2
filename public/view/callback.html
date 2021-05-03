@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <!-- <script src="https://www.paypal.com/sdk/js?intent=capture&amp;commit=true&amp;vault=false&amp;components=buttons&amp;locale=en_US&amp;debug=true&amp;currency=INR&amp;buyer-country=IN&amp;client-id=AcuuDiWgApKeQx7oY6wuGh2kbAIzy8B1NrruTzVl_vn3Dqv7a-EYGKlHRMb70fjc3eX3EP5rlM3VUp8g"
+        data-client-token=""></script> -->
+
+    <script src="https://www.paypal.com/sdk/js?components=buttons&amp;locale=en_US&amp;currency=USD&amp;buyer-country=IN&amp;client-id=AcuuDiWgApKeQx7oY6wuGh2kbAIzy8B1NrruTzVl_vn3Dqv7a-EYGKlHRMb70fjc3eX3EP5rlM3VUp8g"
+        data-client-token=""></script>
+
+</head>
+
+<body>
+    <div style="text-align: center; margin-top: 10%">
+        <h3>Payment SDK - Callback API Integration</h3>
+        <div>
+            Amount: <input type="text" id="amountId" value="1" size="4" />
+            Currency : <select id="selectedCurrency">
+                <!-- <option value="INR" selected="true">INR</option> -->
+                <option value="USD" selected="true">USD</option>
+            </select>
+        </div>
+        <br><br>
+
+        <div style="width: 10%; margin:auto" id="paypal-button-container"></div>
+    </div>
+
+    <script>
+        paypal.Buttons({
+            style: {
+                color: 'blue',
+                layout: 'vertical',
+                shape: 'rect',
+                label: 'checkout'
+            },
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    "purchase_units": [
+                        {
+                            "reference_id": "TEST1",
+                            "amount": {
+                                "value": document.getElementById('amountId').value,
+                                "currency_code": document.getElementById('selectedCurrency').value
+                            }
+                        }
+                    ]
+                }
+                );
+            },
+
+            onShippingChange: function (data, actions) {
+                console.log("inside onShippingChange");
+                console.log(data);
+                if (data.shipping_address.country_code !== 'US') {
+                    return actions.reject();
+                }
+                if (data.shipping_address.state == 'CA') {
+                    return patchShippingCost('0.03');
+                }
+                return patchShippingCost('0.02');
+
+                function patchShippingCost(amount) {
+                    console.log("inside patchShippingCost");
+                    const parsedPrice = parseFloat(document.getElementById("amountId").value);
+                    const parsedShipping = parseFloat(amount);
+                    var total = parsedPrice + parsedShipping;
+                    return actions.order.patch([
+                        {
+                            op: 'replace',
+                            path: "/purchase_units/@reference_id=='TEST1'/amount",
+                            value: {
+                                value:total.toFixed(2),
+                                currency_code: document.getElementById("selectedCurrency").value
+                            }
+                        }
+                    ]);
+                };
+            },
+            // Wait for the payment to be authorized by the customer
+            onApprove: function (data, actions) {
+                return actions.order.get().then(function (details) {
+                    console.log('approved ', details);
+                    return actions.order.capture();
+                }).then(function (result) {
+                    console.log('Payment successful');
+                    console.log(result);
+                    alert('Payment Successful')
+
+                })
+            }
+        }).render('#paypal-button-container');
+    </script>
+
+</body>
+
+</html>

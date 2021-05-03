@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <!-- <script src="https://www.paypal.com/sdk/js?intent=capture&amp;commit=true&amp;vault=false&amp;components=buttons&amp;locale=en_US&amp;debug=true&amp;currency=INR&amp;buyer-country=IN&amp;client-id=AcuuDiWgApKeQx7oY6wuGh2kbAIzy8B1NrruTzVl_vn3Dqv7a-EYGKlHRMb70fjc3eX3EP5rlM3VUp8g"
+        data-client-token=""></script> -->
+
+        <script src="https://www.paypal.com/sdk/js?components=buttons,marks&amp;locale=en_US&amp;currency=USD&amp;buyer-country=IN&amp;client-id=AREKeT1dmLLv69tqifVLs5W71mwKR16MkTZDSCII-YAHjKcsNH6XvaahUMn_3QQyLMK34QdQRmC7s12g"
+        data-client-token=""></script>
+
+</head>
+
+<body>
+    <label>
+        <input type="radio" name="payment-option" value="paypal" checked>
+        <img src="paypal-mark.jpg" alt="Pay with PayPal">
+      </label>
+      
+      <label>
+        <input type="radio" name="payment-option" value="alternate">
+        <div id="paypal-marks-container"></div>
+      </label>
+      
+      <div id="paypal-buttons-container"></div>
+      <div id="alternate-button-container">
+        <button>Pay with a different method</button>
+      </div>
+      
+      <script>
+        // Render the PayPal marks
+        paypal.Marks().render('#paypal-marks-container');
+      
+        // Render the PayPal buttons
+        paypal.Buttons().render('#paypal-buttons-container');
+      
+        // Listen for changes to the radio buttons
+        document.querySelectorAll('input[name=payment-option]')
+          .forEach(function (el) {
+            el.addEventListener('change', function (event) {
+      
+              // If PayPal is selected, show the PayPal button
+              if (event.target.value === 'paypal') {
+                document.body.querySelector('#alternate-button-container')
+                  .style.display = 'none';
+                document.body.querySelector('#paypal-button-container')
+                  .style.display = 'block';
+              }
+      
+              // If alternate funding is selected, show a different button
+              if (event.target.value === 'alternate') {
+                document.body.querySelector('#alternate-button-container')
+                  .style.display = 'block';
+                document.body.querySelector('#paypal-button-container')
+                  .style.display = 'none';
+              }
+            });
+          });
+      
+        // Hide non-PayPal button by default
+        document.body.querySelector('#alternate-button-container')
+          .style.display = 'none';
+      </script>
+
+    <script>
+        paypal.Buttons({
+            style: {
+                color: 'blue',
+                layout: 'vertical',
+                shape: 'rect',
+                label: 'checkout'
+            },
+            createOrder: function (data, actions) {
+                return actions.order.create({
+                    "application_context": {
+                        "shipping_preference": "GET_FROM_FILE"
+                    },
+                    "purchase_units": [
+                        {
+                            "amount": {
+                                "value": document.getElementById('amountId').value,
+                                "currency_code": document.getElementById('selectedCurrency').value
+                            }
+                        }
+                    ]
+                }
+                );
+            },
+            // Wait for the payment to be authorized by the customer
+            onApprove: function (data, actions) {
+                return actions.order.get().then(function (details) {
+                    console.log('approved ', details);
+                    return actions.order.capture();
+                }).then(function (result) {
+                        console.log('Payment successful');
+                        console.log(result);
+                        alert('Payment Successful')
+
+                    })
+            }
+        }).render('#paypal-button-container');
+    </script>
+
+</body>
+
+</html>
